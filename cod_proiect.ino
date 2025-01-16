@@ -17,8 +17,6 @@ int leftMotorPin2=7;
 
 void setup()
 {
-  TCCR0B = TCCR0B & B11111000 | B00000010 ;
-
   pinMode(enableRightMotor, OUTPUT);
   pinMode(rightMotorPin1, OUTPUT);
   pinMode(rightMotorPin2, OUTPUT);
@@ -27,8 +25,11 @@ void setup()
   pinMode(leftMotorPin1, OUTPUT);
   pinMode(leftMotorPin2, OUTPUT);
 
-  pinMode(IR_SENSOR_RIGHT, INPUT);
+  pinMode(IR_SENSOR_FAR_LEFT, INPUT);
   pinMode(IR_SENSOR_LEFT, INPUT);
+  pinMode(IR_SENSOR_CENTER, INPUT);
+  pinMode(IR_SENSOR_RIGHT, INPUT);
+  pinMode(IR_SENSOR_FAR_RIGHT, INPUT);
   rotateMotor(0,0);   
 
   Serial.begin(9600);
@@ -119,8 +120,7 @@ void rotateMotor(int rightMotorSpeed, int leftMotorSpeed)
     digitalWrite(leftMotorPin1,LOW);
     digitalWrite(leftMotorPin2,HIGH);    
   }
-  else if (leftMotorSpeed > 0)
-  {
+  else if (leftMotorSpeed > 0) {
     digitalWrite(leftMotorPin1,HIGH);
     digitalWrite(leftMotorPin2,LOW);      
   }
